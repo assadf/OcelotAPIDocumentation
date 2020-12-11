@@ -10,7 +10,7 @@
         }
       ],
       "UpstreamPathTemplate": "/orders",
-      "UpstreamHttpMethod": [ "POST", "Get" ],
+      "UpstreamHttpMethod": [ "POST", "GET" ],
       "SwaggerKey": "orders"
     },
     {
@@ -23,7 +23,7 @@
         }
       ],
       "UpstreamPathTemplate": "/customers",
-      "UpstreamHttpMethod": [ "Get" ],
+      "UpstreamHttpMethod": [ "GET" ],
       "SwaggerKey": "customers"
     }
   ],
