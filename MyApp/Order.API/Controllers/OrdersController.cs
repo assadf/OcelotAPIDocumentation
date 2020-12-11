@@ -47,6 +47,7 @@ namespace Order.API.Controllers
         /// <returns></returns>
         [HttpPost]
         [ProducesResponseType(202)]
+        //[ApiExplorerSettings(IgnoreApi = true)] // Use this to ignore an endpoint
         public IActionResult PostOrders([FromBody]CreateOrderCommand command)
         {
             return Accepted();
