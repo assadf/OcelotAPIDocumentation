@@ -1,8 +1,12 @@
-﻿using System.Net.Http;
+﻿using System.IO;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi.Readers;
+using Microsoft.OpenApi.Writers;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Gateway.API.Controllers
 {
@@ -20,9 +24,20 @@ namespace Gateway.API.Controllers
 
             var content = await response.Content.ReadAsStringAsync();
 
-            //OpenApiDocument openApi = JsonConvert.DeserializeObject<OpenApiDocument>(content);
+            //return Ok(content);
 
-            return Ok(content);
+            var doc = new OpenApiStringReader().Read(content, out var diagnostic);
+
+            string json;
+
+            using (var outputString = new StringWriter())
+            {
+                var writer = new OpenApiJsonWriter(outputString);
+                doc.SerializeAsV3(writer);
+                json = outputString.ToString();
+            }
+
+            return Ok(json);
         }
     }
 }
