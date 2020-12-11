@@ -17,6 +17,7 @@ namespace Gateway.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAsync()
         {
+            // TODO: Cache the generated document
             var urlOrders = "http://gateway-api/swagger/docs/v1/orders";
 
             var urlCustomers = "http://gateway-api/swagger/docs/v1/customers";

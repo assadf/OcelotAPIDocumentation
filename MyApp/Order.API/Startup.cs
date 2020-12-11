@@ -28,7 +28,16 @@ namespace Order.API
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Orders API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { 
+                    Title = "Orders API", 
+                    Description = "This is the ordering api service.",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Assad Faizi",
+                        Email = "admin@email.com",
+                        Url = new Uri("https://www.google.com")
+                    },
+                    Version = "v1" });
 
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
