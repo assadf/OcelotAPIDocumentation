@@ -19,8 +19,13 @@ namespace Order.API.Controllers
         /// GET /orders
         /// 
         /// This will return a list of Orders.
-        /// 
         /// </remarks>
+        /// <example>
+        /// <code>
+        /// var client = new HttpClient();
+        /// var response = await client.GetAsync("/orders");
+        /// </code>
+        /// </example>
         /// <returns>Collection of Orders.</returns>
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<OrderModel>), 200)]
