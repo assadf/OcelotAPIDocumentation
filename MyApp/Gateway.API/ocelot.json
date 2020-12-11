@@ -11,6 +11,18 @@
       ],
       "UpstreamPathTemplate": "/orders",
       "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/customers",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "customer-api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/customers",
+      "UpstreamHttpMethod": [ "Get" ]
     }
     ],
     "GlobalConfiguration": {}

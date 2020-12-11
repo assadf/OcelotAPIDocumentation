@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace Order.API.Controllers
 {
@@ -6,10 +7,28 @@ namespace Order.API.Controllers
     [ApiController]
     public class OrdersController : ControllerBase
     {
+        /// <summary>
+        /// Return an order
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// GET /orders
+        /// 
+        /// This will return an order
+        /// 
+        /// </remarks>
+        /// <returns></returns>
         [HttpGet]
-        public IActionResult Version()
+        [ProducesResponseType(typeof(OrderModel), 200)]
+        public IActionResult GetOrders()
         {
-            return Ok("Orders API Version 1");
+            var order = new OrderModel
+            {
+                Id = Guid.NewGuid(),
+                Description = "This is an order"
+            };
+
+            return Ok(order);
         }
     }
 }

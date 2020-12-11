@@ -11,3 +11,8 @@ services:
     build:
       context: .
       dockerfile: Order.API/Dockerfile
+  customer-api:
+    image: ${DOCKER_REGISTRY-}orderapi
+    build:
+      context: .
+      dockerfile: Customer.API/Dockerfile

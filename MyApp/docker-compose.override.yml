@@ -13,3 +13,6 @@ services:
   order-api:
     ports:
       - "7001:80"
+  customer-api:
+    ports:
+      - "7002:80"
