@@ -1,6 +1,18 @@
 {
   "Routes": [
     {
+      "DownstreamPathTemplate": "/swagger/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "order-api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/orders/swagger/{everything}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
       "DownstreamPathTemplate": "/api/orders",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
@@ -10,8 +22,19 @@
         }
       ],
       "UpstreamPathTemplate": "/orders",
-      "UpstreamHttpMethod": [ "Get" ],
-      "SwaggerKey": "orders"
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/swagger/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "customer-api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/customers/swagger/{everything}",
+      "UpstreamHttpMethod": [ "Get" ]
     },
     {
       "DownstreamPathTemplate": "/api/customers",
@@ -23,30 +46,7 @@
         }
       ],
       "UpstreamPathTemplate": "/customers",
-      "UpstreamHttpMethod": [ "Get" ],
-      "SwaggerKey": "customers"
-    }
-  ],
-  "SwaggerEndPoints": [
-    {
-      "Key": "orders",
-      "Config": [
-        {
-          "Name": "Orders API",
-          "Version": "v1",
-          "Url": "http://order-api/swagger/v1/swagger.json"
-        }
-      ]
-    },
-    {
-      "Key": "customers",
-      "Config": [
-        {
-          "Name": "Customers API",
-          "Version": "v1",
-          "Url": "http://customer-api/swagger/v1/swagger.json"
-        }
-      ]
+      "UpstreamHttpMethod": [ "Get" ]
     }
   ],
   "GlobalConfiguration": { }

@@ -6,6 +6,9 @@ using Microsoft.Extensions.Hosting;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
 using Microsoft.OpenApi.Models;
+using System.Reflection;
+using System.IO;
+using System;
 
 namespace Gateway.API
 {
@@ -25,14 +28,17 @@ namespace Gateway.API
 
             services.AddMvc();
 
-            services.AddSwaggerForOcelot(Configuration);
-
             services.AddOcelot(Configuration);
 
-            //services.AddSwaggerGen(c =>
-            //{
-            //    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Gateway API", Version = "v1" });
-            //});
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "My Gateway Api",
+                    Version = "v1",
+                    Description = "This is my gateway api",
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,7 +49,6 @@ namespace Gateway.API
                 app.UseDeveloperExceptionPage();
             }
 
-            //app.UseHttpsRedirection();
 
             app.UseRouting();
 
@@ -54,12 +59,9 @@ namespace Gateway.API
                 endpoints.MapControllers();
             });
 
-            app.UseSwaggerForOcelotUI(opt =>
-            {
-                opt.PathToSwaggerGenerator = "/swagger/docs";
-            });
+            app.UseStaticFiles();
 
-//            app.UseSwagger();
+            app.UseSwagger();
 
             app.UseOcelot().Wait();
         }
