@@ -17,23 +17,37 @@ namespace Gateway.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAsync()
         {
-            var urlOrder = "http://gateway-api/swagger/docs/v1/orders";
+            var urlOrders = "http://gateway-api/swagger/docs/v1/orders";
+
+            var urlCustomers = "http://gateway-api/swagger/docs/v1/customers";
 
             var client = new HttpClient();
-            var response = await client.GetAsync(urlOrder);
 
-            var content = await response.Content.ReadAsStringAsync();
+            var orderResponse = await client.GetAsync(urlOrders);
+            var orderContent = await orderResponse.Content.ReadAsStringAsync();
+            var orderDoc = new OpenApiStringReader().Read(orderContent, out var diagnosticOrder);
 
-            //return Ok(content);
+            var customerResponse = await client.GetAsync(urlCustomers);
+            var customerContent = await customerResponse.Content.ReadAsStringAsync();
+            var customerDoc = new OpenApiStringReader().Read(customerContent, out var diagnosticCustomer);
 
-            var doc = new OpenApiStringReader().Read(content, out var diagnostic);
+
+            foreach (var path in customerDoc.Paths)
+            {
+                orderDoc.Paths.Add(path.Key, path.Value);
+            }
+
+            foreach (var schema in customerDoc.Components.Schemas)
+            {
+                orderDoc.Components.Schemas.Add(schema.Key, schema.Value);
+            }
 
             string json;
 
             using (var outputString = new StringWriter())
             {
                 var writer = new OpenApiJsonWriter(outputString);
-                doc.SerializeAsV3(writer);
+                orderDoc.SerializeAsV3(writer);
                 json = outputString.ToString();
             }
 

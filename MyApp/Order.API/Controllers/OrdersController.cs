@@ -39,7 +39,6 @@ namespace Order.API.Controllers
         /// Create an order
         /// </summary>
         /// <remarks>
-        /// 
         /// POST /orders
         /// 
         /// This will accept an order to be created
