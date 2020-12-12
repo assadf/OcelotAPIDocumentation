@@ -19,8 +19,8 @@ namespace Gateway.API.Controllers
         {
             // TODO: Cache the generated document
             var urlOrders = "http://gateway-api/swagger/docs/v1/orders";
-
             var urlCustomers = "http://gateway-api/swagger/docs/v1/customers";
+            var urlOrderProviderA = "http://orderprovidera-api/swagger/v1/swagger.json";
 
             var client = new HttpClient();
 
@@ -32,6 +32,9 @@ namespace Gateway.API.Controllers
             var customerContent = await customerResponse.Content.ReadAsStringAsync();
             var customerDoc = new OpenApiStringReader().Read(customerContent, out var diagnosticCustomer);
 
+            var orderProviderAResponse = await client.GetAsync(urlOrderProviderA);
+            var orderProviderAContent = await orderProviderAResponse.Content.ReadAsStringAsync();
+            var orderProviderADoc = new OpenApiStringReader().Read(orderProviderAContent, out var diagnosticOrderProvidera );
 
             foreach (var path in customerDoc.Paths)
             {
@@ -39,6 +42,16 @@ namespace Gateway.API.Controllers
             }
 
             foreach (var schema in customerDoc.Components.Schemas)
+            {
+                orderDoc.Components.Schemas.Add(schema.Key, schema.Value);
+            }
+
+            foreach (var path in orderProviderADoc.Paths)
+            {
+                orderDoc.Paths.Add(path.Key, path.Value);
+            }
+
+            foreach (var schema in orderProviderADoc.Components.Schemas)
             {
                 orderDoc.Components.Schemas.Add(schema.Key, schema.Value);
             }

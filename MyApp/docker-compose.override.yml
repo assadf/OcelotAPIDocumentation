@@ -16,3 +16,6 @@ services:
   customer-api:
     ports:
       - "7002:80"
+  orderprovidera-api:
+    ports:
+      - "7003:80"

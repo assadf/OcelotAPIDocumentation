@@ -1,10 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Swashbuckle.Swagger;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
 using System.Web.Http.Description;
 using IDocumentFilter = Swashbuckle.AspNetCore.SwaggerGen.IDocumentFilter;
 
@@ -52,8 +57,27 @@ namespace Order.API.Controllers
         [HttpPost]
         [ProducesResponseType(202)]
         //[ApiExplorerSettings(IgnoreApi = true)] // Use this to ignore an endpoint
-        public IActionResult PostOrders([FromBody]CreateOrderCommand command)
+        public async Task<IActionResult> PostOrdersAsyc([FromBody]CreateOrderCommand command)
         {
+            var client = new HttpClient();
+
+            if (command.Name.ToLowerInvariant() == "orderprovidera")
+            {
+                var model = new
+                {
+                    OrderId = Guid.NewGuid(),
+                    OrderName = "Order Provider A Placed",
+                    Data = JObject.Parse(command.Data.ToString())
+                };
+
+                var message = JsonConvert.SerializeObject(model);
+                var content = new StringContent(message, Encoding.UTF8, "application/json");
+
+                var response = await client.PostAsync("http://orderprovidera-api/api/orders", content);
+
+                response.EnsureSuccessStatusCode();
+            }
+
             return Accepted();
         }
     }

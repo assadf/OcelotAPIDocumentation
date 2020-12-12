@@ -19,5 +19,11 @@ namespace Order.API
         /// </summary>
         [Range(1, int.MaxValue)]
         public int Quantity { get; set; }
+
+        /// <summary>
+        /// The Order Provider data.  Please check the relevant POST Order Prodivder X Data Model sections for details.
+        /// </summary>
+        [Required]
+        public object Data { get; set; }
     }
 }
