@@ -21,3 +21,8 @@ services:
     build:
       context: .
       dockerfile: OrderProviderA.API/Dockerfile
+  orderproviderb-api:
+    image: ${DOCKER_REGISTRY-}orderproviderbapi
+    build:
+      context: .
+      dockerfile: OrderProviderB.API/Dockerfile

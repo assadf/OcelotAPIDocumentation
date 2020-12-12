@@ -19,3 +19,6 @@ services:
   orderprovidera-api:
     ports:
       - "7003:80"
+  orderproviderb-api:
+    ports:
+      - "7004:80"

@@ -2,12 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <UserSecretsId>b3d65ed4-2529-4e8a-a5be-45b54acb4d68</UserSecretsId>
+    <UserSecretsId>0365ad5c-cea9-47ea-bcb6-8070912731f8</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>obj\Debug\netcoreapp3.1\Customer.API.xml</DocumentationFile>
+    <DocumentationFile>obj\Debug\netcoreapp3.1\OrderProviderB.API.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

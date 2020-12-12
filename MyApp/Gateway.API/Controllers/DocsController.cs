@@ -21,6 +21,7 @@ namespace Gateway.API.Controllers
             var urlOrders = "http://gateway-api/swagger/docs/v1/orders";
             var urlCustomers = "http://gateway-api/swagger/docs/v1/customers";
             var urlOrderProviderA = "http://orderprovidera-api/swagger/v1/swagger.json";
+            var urlOrderProviderB = "http://orderproviderb-api/swagger/v1/swagger.json";
 
             var client = new HttpClient();
 
@@ -36,6 +37,9 @@ namespace Gateway.API.Controllers
             var orderProviderAContent = await orderProviderAResponse.Content.ReadAsStringAsync();
             var orderProviderADoc = new OpenApiStringReader().Read(orderProviderAContent, out var diagnosticOrderProvidera );
 
+            var orderProviderBResponse = await client.GetAsync(urlOrderProviderB);
+            var orderProviderBContent = await orderProviderBResponse.Content.ReadAsStringAsync();
+            var orderProviderBDoc = new OpenApiStringReader().Read(orderProviderBContent, out var diagnosticOrderProviderb);
 
             orderDoc.Info.Title = "Order System API";
 
@@ -47,6 +51,18 @@ namespace Gateway.API.Controllers
             }
 
             foreach (var schema in orderProviderADoc.Components.Schemas)
+            {
+                orderDoc.Components.Schemas.Add(schema.Key, schema.Value);
+            }
+
+            foreach (var path in orderProviderBDoc.Paths)
+            {
+                var newpath = path.Key.Replace("/api", "").ToLower();
+                newpath += $" ({orderProviderBDoc.Info.Title})";
+                orderDoc.Paths.Add(newpath, path.Value);
+            }
+
+            foreach (var schema in orderProviderBDoc.Components.Schemas)
             {
                 orderDoc.Components.Schemas.Add(schema.Key, schema.Value);
             }
