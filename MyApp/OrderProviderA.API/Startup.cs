@@ -31,7 +31,7 @@ namespace OrderProviderA.API
                 c.SchemaFilter<SwaggerExcludePropertySchemaFilter>();
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Title = "Order Provider A API",
+                    Title = "Order Provider A",
                     Description = "This is the ordering api service.",
                     Contact = new OpenApiContact
                     {
@@ -42,6 +42,7 @@ namespace OrderProviderA.API
                     Version = "v1"
                 });
                 c.CustomSchemaIds((type) => type.FullName);
+                c.TagActionsBy(api => "Order Provider");
 
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);

@@ -36,22 +36,27 @@ namespace Gateway.API.Controllers
             var orderProviderAContent = await orderProviderAResponse.Content.ReadAsStringAsync();
             var orderProviderADoc = new OpenApiStringReader().Read(orderProviderAContent, out var diagnosticOrderProvidera );
 
+
+            orderDoc.Info.Title = "Order System API";
+
+            foreach (var path in orderProviderADoc.Paths)
+            {
+                var newpath = path.Key.Replace("/api", "").ToLower();
+                newpath += $" ({orderProviderADoc.Info.Title})";
+                orderDoc.Paths.Add(newpath, path.Value);
+            }
+
+            foreach (var schema in orderProviderADoc.Components.Schemas)
+            {
+                orderDoc.Components.Schemas.Add(schema.Key, schema.Value);
+            }
+
             foreach (var path in customerDoc.Paths)
             {
                 orderDoc.Paths.Add(path.Key, path.Value);
             }
 
             foreach (var schema in customerDoc.Components.Schemas)
-            {
-                orderDoc.Components.Schemas.Add(schema.Key, schema.Value);
-            }
-
-            foreach (var path in orderProviderADoc.Paths)
-            {
-                orderDoc.Paths.Add(path.Key, path.Value);
-            }
-
-            foreach (var schema in orderProviderADoc.Components.Schemas)
             {
                 orderDoc.Components.Schemas.Add(schema.Key, schema.Value);
             }

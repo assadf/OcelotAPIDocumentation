@@ -17,7 +17,7 @@ namespace OrderProviderA.API.Controllers
         /// </remarks>
         /// <param name="command"></param>
         /// <returns></returns>
-        [HttpPost]
+        [HttpPost(Name ="CreateOrderProviderA")]
         public IActionResult Post([FromBody]CreateOrderCommand command)
         {
             return Ok(new ResultModel

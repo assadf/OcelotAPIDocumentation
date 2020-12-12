@@ -21,7 +21,7 @@ namespace Order.API
         public int Quantity { get; set; }
 
         /// <summary>
-        /// The Order Provider data.  Please check the relevant POST Order Prodivder X Data Model sections for details.
+        /// The Order Provider specific data. Please check the relevant POST Order Provider data under <b><a href="#tag/Order-Provider">Order Provider</a></b> section.
         /// </summary>
         [Required]
         public object Data { get; set; }
