@@ -77,6 +77,12 @@ namespace Gateway.API.Controllers
                 orderDoc.Components.Schemas.Add(schema.Key, schema.Value);
             }
 
+            orderDoc.Tags.Add(new OpenApiTag
+            {
+                Name = "Order Provider",
+                Description = "Use this section to select the correct model for the data part in POST /orders"
+            });
+
             string json;
 
             using (var outputString = new StringWriter())
