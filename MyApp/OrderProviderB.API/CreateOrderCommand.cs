@@ -14,6 +14,7 @@ namespace OrderProviderB.API
         /// <summary>
         /// Order Provider B Data
         /// </summary>
+        [Required]
         public DataCommand Data { get; set; }
     }
 

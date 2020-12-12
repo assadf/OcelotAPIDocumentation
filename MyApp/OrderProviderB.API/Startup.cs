@@ -47,7 +47,7 @@ namespace OrderProviderB.API
                     },
                     Version = "v1"
                 });
-                c.CustomSchemaIds((type) => type.FullName);
+                c.CustomSchemaIds((type) => $"OrderProviderB-{type.Name}");
                 c.TagActionsBy(api => "Order Provider");
 
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";

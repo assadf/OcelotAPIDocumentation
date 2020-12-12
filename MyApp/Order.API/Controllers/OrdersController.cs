@@ -34,6 +34,7 @@ namespace Order.API.Controllers
         /// <returns>Collection of Orders.</returns>
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<OrderModel>), 200)]
+        [ProducesResponseType(404)]
         public IActionResult GetOrders()
         {
             var order = new OrderModel
@@ -56,6 +57,7 @@ namespace Order.API.Controllers
         /// <returns></returns>
         [HttpPost]
         [ProducesResponseType(202)]
+        [ProducesResponseType(400)]
         //[ApiExplorerSettings(IgnoreApi = true)] // Use this to ignore an endpoint
         public async Task<IActionResult> PostOrdersAsyc([FromBody]CreateOrderCommand command)
         {
