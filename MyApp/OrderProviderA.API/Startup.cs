@@ -28,6 +28,7 @@ namespace OrderProviderA.API
 
             services.AddSwaggerGen(c =>
             {
+                c.SchemaFilter<SwaggerExcludePropertySchemaFilter>();
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Title = "Order Provider A API",

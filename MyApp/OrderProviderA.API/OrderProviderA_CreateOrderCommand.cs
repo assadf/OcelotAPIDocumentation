@@ -6,10 +6,10 @@ namespace OrderProviderA.API
 {
     public class OrderProviderA_CreateOrderCommand
     {
-        //[JsonIgnore]
+        [SwaggerIgnoreProperty]
         public Guid OrderId { get; set; }
 
-        //[JsonIgnore]
+        [SwaggerIgnoreProperty]
         public string OrderName { get; set; }
 
         /// <summary>
