@@ -1,6 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.SwaggerGen;
+using Swashbuckle.Swagger;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Web.Http.Description;
+using IDocumentFilter = Swashbuckle.AspNetCore.SwaggerGen.IDocumentFilter;
 
 namespace Order.API.Controllers
 {
@@ -20,12 +26,6 @@ namespace Order.API.Controllers
         /// 
         /// This will return a list of Orders.
         /// </remarks>
-        /// <example>
-        /// <code>
-        /// var client = new HttpClient();
-        /// var response = await client.GetAsync("/orders");
-        /// </code>
-        /// </example>
         /// <returns>Collection of Orders.</returns>
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<OrderModel>), 200)]
@@ -47,7 +47,6 @@ namespace Order.API.Controllers
         /// POST /orders
         /// 
         /// This will accept an order to be created
-        /// 
         /// </remarks>
         /// <returns></returns>
         [HttpPost]
@@ -58,4 +57,17 @@ namespace Order.API.Controllers
             return Accepted();
         }
     }
+
+    //public class InjectSamples : IDocumentFilter
+    //{
+
+    //    public void Apply(OpenApiDocument swaggerDoc, DocumentFilterContext context)
+    //    {
+    //        var path = swaggerDoc.Paths.Where(x => x.Key.Contains("Values")).First().Value;
+
+    //        path.Post.Parameters.FirstOrDefault().Extensions.Add("x-code-samples", "123456");
+
+            
+    //    }
+    //}
 }
