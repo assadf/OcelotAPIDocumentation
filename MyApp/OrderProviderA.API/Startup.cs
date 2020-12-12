@@ -41,6 +41,7 @@ namespace OrderProviderA.API
                     },
                     Version = "v1"
                 });
+                c.CustomSchemaIds((type) => type.FullName);
 
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);

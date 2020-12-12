@@ -1,10 +1,11 @@
 ﻿using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace OrderProviderA.API
 {
-    public class OrderProviderA_CreateOrderCommand
+    public class CreateOrderCommand
     {
         [SwaggerIgnoreProperty]
         public Guid OrderId { get; set; }

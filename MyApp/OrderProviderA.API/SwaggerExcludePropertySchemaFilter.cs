@@ -11,7 +11,7 @@ namespace OrderProviderA.API
     {
     }
 
-    public class SwaggerExcludePropertySchemaFilter : Swashbuckle.AspNetCore.SwaggerGen.ISchemaFilter
+    public class SwaggerExcludePropertySchemaFilter : ISchemaFilter
     {
         public void Apply(OpenApiSchema schema, SchemaFilterContext context)
         {
