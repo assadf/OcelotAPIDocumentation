@@ -47,8 +47,11 @@ namespace OrderProviderB.API
                     },
                     Version = "v1"
                 });
-                c.CustomSchemaIds((type) => $"OrderProviderB-{type.Name}");
-                c.TagActionsBy(api => "Order Provider");
+                c.CustomSchemaIds((type) => $"{AppDomain.CurrentDomain.FriendlyName}{type.Name}");
+                c.TagActionsBy(desc =>
+                {
+                    return new List<string>() { "Order Provider" };
+                });
 
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);

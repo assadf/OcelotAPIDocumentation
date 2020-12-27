@@ -1,17 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Swashbuckle.AspNetCore.SwaggerGen;
-using Swashbuckle.Swagger;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web.Http.Description;
-using IDocumentFilter = Swashbuckle.AspNetCore.SwaggerGen.IDocumentFilter;
 
 namespace Order.API.Controllers
 {
@@ -58,6 +52,7 @@ namespace Order.API.Controllers
         [HttpPost]
         [ProducesResponseType(202)]
         [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         //[ApiExplorerSettings(IgnoreApi = true)] // Use this to ignore an endpoint
         public async Task<IActionResult> PostOrdersAsyc([FromBody]CreateOrderCommand command)
         {

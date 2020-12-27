@@ -3,7 +3,11 @@ using System;
 
 namespace Customer.API.Controllers
 {
+    /// <summary>
+    /// Customers API - Get, Create etc
+    /// </summary>
     [Route("api/[controller]")]
+    [Produces("application/json")]
     [ApiController]
     public class CustomersController : ControllerBase
     {
@@ -11,13 +15,11 @@ namespace Customer.API.Controllers
         /// Return a customer
         /// </summary>
         /// <remarks>
-        /// 
         /// GET /customers
         /// 
         /// This will return a customer
-        /// 
         /// </remarks>
-        /// <returns></returns>
+        /// <returns>A Customer</returns>
         [HttpGet]
         [ProducesResponseType(typeof(CustomerModel), 200)]
         public IActionResult Get()

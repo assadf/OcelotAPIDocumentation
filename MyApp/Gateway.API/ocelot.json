@@ -47,6 +47,26 @@
           "Url": "http://customer-api/swagger/v1/swagger.json"
         }
       ]
+    },
+    {
+      "Key": "orderprovidera",
+      "Config": [
+        {
+          "Name": "Order Provider A",
+          "Version": "v1",
+          "Url": "http://orderprovidera-api/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "orderproviderb",
+      "Config": [
+        {
+          "Name": "Order Provider B",
+          "Version": "v1",
+          "Url": "http://orderproviderb-api/swagger/v1/swagger.json"
+        }
+      ]
     }
   ],
   "GlobalConfiguration": { }

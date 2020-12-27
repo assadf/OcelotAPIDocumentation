@@ -17,6 +17,7 @@ namespace Order.API
         /// <summary>
         /// Number of items required.
         /// </summary>
+        [Required]
         [Range(1, int.MaxValue)]
         public int Quantity { get; set; }
 

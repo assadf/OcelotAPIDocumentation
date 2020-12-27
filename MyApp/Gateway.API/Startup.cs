@@ -29,6 +29,8 @@ namespace Gateway.API
 
             services.AddOcelot(Configuration);
 
+            services.Configure<OcelotSwaggerOptions>(Configuration);
+
             //services.AddSwaggerGen(c =>
             //{
             //    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Gateway API", Version = "v1" });
